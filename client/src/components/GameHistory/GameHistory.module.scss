@@ -1,0 +1,55 @@
+.gameHistory {
+    background: azure;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    gap: 0.5rem;
+    min-width: 20%;
+    height: 100%;//calc(100% - 2rem);
+    position: relative;
+}
+
+// .gameHistoryItem {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+.wordItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wordWrapper {
+    display: flex;
+    padding: 0.5rem;
+    flex-direction: column;
+}
+
+.skipped {
+    background: rgb(240, 136, 136);
+}
+
+.guessed {
+    background: rgb(169, 207, 170);
+}
+
+.guessed_2 {
+    background: rgb(115, 202, 75);
+}
+
+.scoreWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameHistoryItem {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}

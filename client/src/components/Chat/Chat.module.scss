@@ -1,0 +1,65 @@
+.chatWrapper {
+    display: flex;
+    flex-direction: column;
+    background: #0f0e0ecc;
+    height: 100%;
+    justify-content: space-between;
+    color: white;
+    backdrop-filter: blur(10px);
+    width: 40%;
+    min-width: 50rem;
+    align-self: center;
+    font-size: medium;
+    overflow: auto;
+}
+
+.chatInputWrapper {
+    width: 100%;
+    display: flex;
+    padding: 0 1rem;
+    align-items: center;
+    gap: 0.5rem;   
+
+    input {
+        color: white;
+    }
+}
+
+.input {
+    width: 100%;
+}
+
+.chatMessageList {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 0.5rem;
+    overflow-y: auto;
+    padding-top: 0.3rem;
+}
+
+
+
+.chatMessage {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: max-content;
+    color: black;
+    margin: 0 1rem;
+    padding: 0.5rem;
+    border-radius: 8px 8px 8px 0px;
+
+    &.myMessage {
+        background: cadetblue;
+        border-radius: 8px 8px 0px 8px;
+        align-self: flex-end;
+        color: white;
+    }
+}
+
+.messageFrom {
+    display: flex;
+    font-size: small;
+}

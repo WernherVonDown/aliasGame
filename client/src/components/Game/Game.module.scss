@@ -1,0 +1,106 @@
+.game {
+    width: 100%;
+    height: 30rem;
+    background: lightcyan;
+}
+
+.wordWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+
+.readyWrapper {
+
+}
+
+.wordItem {
+    display: flex;
+    align-items: center;
+}
+
+.wordItem {
+    display: flex;
+    // padding: 1rem;
+    font-size: large;
+    justify-content: center;
+}
+
+.wordControls {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightAnswerWrapper {
+    display: flex;
+}
+
+.nextButonWrapper {
+    display: flex;
+}
+
+.carouselWrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.buttonNext {
+    display: flex;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    background-color: #add8e600;
+    align-items: center;
+
+    &:focus {
+        background-color: #add8e600;
+    }
+
+    &:hover {
+        background-color: #00000012;
+    }
+}
+
+.progressBarWrapper {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: 1re;
+    top: 1rem;
+    z-index: 1;
+    padding: 0 15%;
+}
+
+.buttonDone {
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+}
+
+.wordStatusWrapper {
+    background: #000000c4;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+}
+
+.wordStatus {
+    display: flex;
+}
+
+.gameActiveUserVideo {
+    display: flex;
+    max-width: 50%;
+}
+
+.gameVideosWrapper {
+    display: flex;
+}

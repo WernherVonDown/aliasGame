@@ -1,0 +1,27 @@
+.prepareMediaDevices {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.prepareDevicesHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.prepareDevicesBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.prepareDevicesVideo {
+    display: flex;
+    justify-content: center;
+}
+
+.prepareDevicesButton {
+    display: flex;
+    justify-content: center;
+}

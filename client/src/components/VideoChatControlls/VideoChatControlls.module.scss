@@ -1,0 +1,17 @@
+.videoChatControlls {
+    display: flex;
+    background: whitesmoke;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.controllButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

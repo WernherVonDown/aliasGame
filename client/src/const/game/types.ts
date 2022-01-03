@@ -1,0 +1,1 @@
+export interface ITeamScore { teamColor: string, score: number}

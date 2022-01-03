@@ -1,0 +1,42 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.createGame {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    background: aliceblue;
+    padding: 1rem;
+    align-self: center;
+    margin: auto;
+}
+
+.selectLangPairWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.createGameTitle {
+    display: flex;
+    font-size: larger;
+}
+
+.crateGameWrapper {
+    display: flex;
+    background: white;
+    width: 100%;
+    padding: 1rem;
+    font-size: large;
+}
+
+.crateGameDescription {
+    display: flex;
+    width: 50%;
+    border-right: solid 1px #6495ed26;
+}
