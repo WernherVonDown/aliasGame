@@ -191,6 +191,15 @@ class Game {
         this.subscribe(socket);
         this.users.set(socket.id, user);
         this.setCurrentUserIfNeeded(user)
+        if (this.gameStarted) {
+            socket.emit(GAME_EVENTS.startGame, true);
+            if (this.currentUser) {
+                socket.emit(GAME_EVENTS.changeState, {
+                    currentUserId: this.currentUser.id,
+                    currentTeam: this.currentUser.teamColor
+                });
+            }
+        }
     }
 
     getNextCurrentUser(): User {

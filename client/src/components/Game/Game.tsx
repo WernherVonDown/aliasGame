@@ -59,7 +59,7 @@ const Game = () => {
                 {/* <div>Игра началась!</div> */}
                 {/* <div> */}
                     {
-                        activeUsers.map(u => <Video key={`gameVideo_${u.id}`} className={styles.gameActiveUserVideo} stream={u.stream}/>)
+                        activeUsers.map(u => <Video key={`gameVideo_${u.id}`} muted={true} className={styles.gameActiveUserVideo} stream={u.stream}/>)
                     }
                 {/* </div> */}
 

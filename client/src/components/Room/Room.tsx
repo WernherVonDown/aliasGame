@@ -19,6 +19,7 @@ import { ChatContextProvider } from '../../context/chat.context';
 import { GameContextProvider } from '../../context/game.context';
 import { VideoChatContextProvider } from '../../context/videoChat.context';
 import PrepareMediaDevices from '../PrepareMediaDevices/PrepareMediaDevices';
+import MainHeader from '../MainHeader/MainHeader';
 
 const Room = (props: any) => {
   const { socket } = useSockets();
@@ -54,16 +55,20 @@ const Room = (props: any) => {
   }
 
   const gameElements = <GameContextProvider>
-    <div className={styles.mainPanelWrapper}>
-      <GameHistory />
-      <div className={styles.centerPanelWrapper}>
-        <Game />
-        <ChatContextProvider>
-          <Chat />
-        </ChatContextProvider>
+    <div>
+      <MainHeader />
+      <div className={styles.mainPanelWrapper}>
+        <GameHistory />
+        <div className={styles.centerPanelWrapper}>
+          <Game />
+          <ChatContextProvider>
+            <Chat />
+          </ChatContextProvider>
+        </div>
+        <Users />
       </div>
-      <Users />
     </div>
+
   </GameContextProvider>
 
   const prepareDeviceElements = <GameContextProvider>
