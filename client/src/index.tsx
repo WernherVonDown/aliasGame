@@ -7,18 +7,21 @@ import { BrowserRouter } from 'react-router-dom';
 import { UserContextProvider } from './context/user.context';
 import { UsersContextProvider } from './context/users.context';
 import { CookiesProvider } from 'react-cookie';
+import { AuthContextProvider } from './context/auth.context';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <CookiesProvider>
-        <SocketsProvider>
-          <UserContextProvider>
-            <UsersContextProvider>
-              <App />
-            </UsersContextProvider>
-          </UserContextProvider>
-        </SocketsProvider>
+        <AuthContextProvider>
+          <SocketsProvider>
+            <UserContextProvider>
+              <UsersContextProvider>
+                <App />
+              </UsersContextProvider>
+            </UserContextProvider>
+          </SocketsProvider>
+        </AuthContextProvider>
       </CookiesProvider>
     </BrowserRouter>
   </React.StrictMode>,

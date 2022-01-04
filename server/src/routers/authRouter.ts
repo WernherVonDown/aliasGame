@@ -9,5 +9,6 @@ router.post('/registration', [
     check("password", "password must be longer then 4 and shorter then 10 characters").isLength({min: 4, max: 10}),
 ] ,authController.registration);
 router.post('/login', authController.login);
+router.post('/validate', authController.validate);
 
 export default router;

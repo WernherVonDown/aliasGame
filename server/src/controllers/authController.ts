@@ -4,20 +4,21 @@ import log from "../utils/logger";
 import bcrypt from 'bcryptjs';
 import { validationResult } from 'express-validator';
 import { generateAccessToken } from '../utils/generateAccessToken';
+import { decodeAccessToken } from '../utils/decodeAccessToken';
 
 class AuthController {
     async registration(req: Request, res: Response): Promise<void> {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                res.status(400).json({ message: "Registration failed", errors })
+                res.json({ success: false, message: "Registration failed", errors })
                 return;
             }
             const { username, password, email } = req.body;
             console.log('EEEEEEEEEEE', { username, password, email })
             const userExists = await User.findOne({ email });
             if (userExists) {
-                res.status(400).json({ message: 'This email is already used' })
+                res.json({ success: false, message: 'This email is already used' })
                 return;
             }
             const hashedpass = bcrypt.hashSync(password, 7);
@@ -31,7 +32,7 @@ class AuthController {
             res.json({ success: true })
         } catch (error) {
             log.error(error);
-            res.status(400).json({ message: 'registration error' })
+            res.json({ success: false, message: 'registration error' })
         }
     }
 
@@ -40,21 +41,48 @@ class AuthController {
             const { password, email } = req.body;
             const user = await User.findOne({ email });
             if (!user) {
-                res.status(400).json({ message: "User not found" })
+                res.json({ message: "User not found", success: false })
                 return;
             }
 
             const passValid = bcrypt.compareSync(password, user.password);
             if (!passValid) {
-                res.status(400).json({ message: "Password is incorrect" });
+                res.json({ success: false, message: "Password is incorrect" });
                 return;
             }
 
             const token = generateAccessToken({ username: user.username, id: user._id }, {expiresIn: "24h"})
-            res.json(token);
+            res.json({token, username: user.username, success: true});
         } catch (error) {
             log.error(error);
-            res.status(400).json({ message: 'registration error' })
+            res.json({ success: false, message: 'registration error' })
+        }
+    }
+
+    async validate(req: Request, res: Response) {
+        try {
+            const token = req.headers.authorization?.split(' ')[1];
+            if (!token) {
+                return res.json({message: 'User not authorized'})
+            }
+            const decodedData = decodeAccessToken(token);
+            console.log("DECODED DATA", decodedData)
+            //@ts-ignore
+            const {id, username } = decodedData
+            if (id && username) {
+                res.json({
+                    success: true,
+                    
+                    username: username
+                })
+            }
+
+        } catch (error) {
+            res.json({
+                success: false,
+                message: "validation failed"
+            })
+            log.error(`validateion failed ${error}`)
         }
     }
 }

@@ -10,6 +10,7 @@ import { useSockets } from '../../context/socket.context';
 import { ROOM_EVENTS } from '../../const/room/ROOM_EVENTS';
 import { useHistory } from "react-router-dom";
 import Header from "../Header/Header";
+import MainHeader from "../MainHeader/MainHeader";
 
 const CreateGame = () => {
     const [foreignLang, setForeign] = useState(Langs.FR);
@@ -65,9 +66,7 @@ const CreateGame = () => {
     }
 
     return <div className={styles.content}>
-        <Header>
-            <div>Hello</div>
-        </Header>
+        <MainHeader/>
         <div className={styles.crateGameWrapper}>
             <div className={styles.crateGameDescription}>
                 Игра Alias на иностранном языке помогает развивать разговорные навыки за счёт активной практики.

@@ -1,0 +1,26 @@
+.formWrapper {
+    background: white;
+    width: 50%;
+    max-width: 25rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleText {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btnWrapper {
+    display: flex;
+    gap: 0.5rem;
+}

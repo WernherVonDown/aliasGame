@@ -13,6 +13,7 @@ import { IEnterRoom } from '../../const/room/types';
 import { GameContextProvider } from '../../context/game.context';
 import PrepareMediaDevices from '../PrepareMediaDevices/PrepareMediaDevices';
 import { VideoChatContextProvider } from '../../context/videoChat.context';
+import { AuthContext } from '../../context/auth.context';
 
 interface IProps {
     roomId: string
@@ -22,7 +23,8 @@ interface IProps {
 const EnterRoom = ({ roomId }: IProps) => {
     const { socket } = useSockets();
     const [cookies, setCookie] = useCookies([USER_COOKIE.userInfo]);
-    const userName = useInput(cookies[USER_COOKIE.userInfo]?.userName || '')
+    const {state: authState} = useContext(AuthContext)
+    const userName = useInput(authState.username || cookies[USER_COOKIE.userInfo]?.userName || '')
     const [showSelectDevices, setShowSelectDevices] = useState<boolean>(false);
 
     console.log('COOKIE', cookies)
