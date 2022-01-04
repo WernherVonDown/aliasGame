@@ -3,7 +3,8 @@ export interface IRoomCreate {
     langs: {
         foreignLang: string;
         motherLang: string;
-    }
+    },
+    custom?: string;
 }
 
 export interface ICheckRoomResult {

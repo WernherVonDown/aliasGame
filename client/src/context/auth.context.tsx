@@ -1,8 +1,9 @@
-import React, { ReactElement, useState, useCallback, useEffect } from "react";
+import React, { ReactElement, useState, useContext, useEffect } from "react";
 import axios from 'axios';
 import { HTTP_EVENTS } from "../const/https/HTTP_EVENTS";
 import { BACKEND_URL } from "../config/default";
 import path from 'path';
+import { UserContext } from "./user.context";
 
 interface IState {
     loggedIn: boolean,

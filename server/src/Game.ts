@@ -27,7 +27,7 @@ class Game {
     private words: Words;
     private scores: Map<string, number> = new Map()
 
-    constructor({ roomId, langs }: IRoomCreate, io: Server) {
+    constructor({ roomId, langs, custom }: IRoomCreate, io: Server) {
         this.teams = new Map();
         this.roomId = roomId;
         this.io = io;
@@ -41,7 +41,7 @@ class Game {
         this.roundTimerId = 0;
         this.currentIntervalId = 0;
         this.roundStarted = false;
-        this.words = new Words(langs);
+        this.words = new Words(langs, custom);
     }
 
     setGameStarted(data: boolean) {

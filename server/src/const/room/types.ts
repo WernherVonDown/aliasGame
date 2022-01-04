@@ -3,5 +3,6 @@ export interface IRoomCreate {
     langs: {
         foreignLang: string;
         motherLang: string;
-    }
+    },
+    custom?: string
 }

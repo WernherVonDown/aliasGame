@@ -43,9 +43,9 @@ class RoomsManager {
         }
     }
 
-    createRoom = (socket: Socket, {roomId, langs: {foreignLang, motherLang}}: IRoomCreate) => {
-        log.info('createRoom', {roomId, langs: {foreignLang, motherLang}})
-        this.rooms.set(roomId, new Room({roomId, langs: {foreignLang, motherLang}}, this.io));
+    createRoom = (socket: Socket, {roomId, langs: {foreignLang, motherLang}, custom}: IRoomCreate) => {
+        console.log('createRoom', {roomId, langs: {foreignLang, motherLang}, custom})
+        this.rooms.set(roomId, new Room({roomId, langs: {foreignLang, motherLang}, custom}, this.io));
         socket.emit(ROOM_EVENTS.createRoom, {success: true, roomId})
     }
 

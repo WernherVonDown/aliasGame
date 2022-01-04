@@ -8,7 +8,7 @@ class WordsController {
     async add(req: Request, res: Response) {
         try {
             const { name, words } = req.body;
-            
+
             const savedWords = await Promise.all(words.map((w: IWord) => (new Word(w)).save()))
             console.log('BBBBB', savedWords)
             const wordsIds = savedWords.map((w: any) => w._id)
@@ -26,7 +26,7 @@ class WordsController {
                     $push: {wordsLists: wordsList._id}}
              )
             if (!user) {
-                res.status(400).json({message: 'user not found'})
+                res.json({success: false, message: 'user not found'})
                 return;
             }
     
@@ -36,6 +36,7 @@ class WordsController {
             res.json({success: true})
         } catch (error) {
             log.error(error);
+            res.json({success: false, message: 'error edding words'})
         }
     }
 
@@ -44,7 +45,7 @@ class WordsController {
             //@ts-ignore
             const user = await User.findOne({_id: req?.user.id}).populate('wordsLists'); 
             if (!user) {
-                res.status(400).json({message: 'user not found'})
+                res.json({success: false, message: 'user not found'})
                 return;
             }
             console.log('USER', user)
@@ -53,9 +54,8 @@ class WordsController {
             res.json({success: true, wordsList: popUser.wordsLists})
         } catch (error) {
             log.error(error);
+            res.json({success: false, message: 'error get words'})
         }
-
-
     }
 
 }

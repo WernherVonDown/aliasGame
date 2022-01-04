@@ -13,6 +13,7 @@ import Room from './components/Room/Room';
 import { VideoChatContextProvider } from './context/videoChat.context';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
+import AddCustomWords from './components/AddCustomWords/AddCustomWords';
 
 const App = () => {
   // const { socket } = useSockets();
@@ -25,6 +26,7 @@ const App = () => {
     <Route exact path='/' component={CreateGame} />
     <Route exact path='/login' component={Login} />
     <Route exact path='/registration' component={Registration} />
+    <Route exact path='/words/add' component={AddCustomWords} />
     
     {/* <VideoChatContextProvider> */}
       <Route path='/room/:roomId' component={Room} />

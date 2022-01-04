@@ -16,13 +16,13 @@ class Room {
     private game: Game;
     private videoChat: VideoChat
 
-    constructor({ roomId, langs }: IRoomCreate, io: Server) {
+    constructor({ roomId, langs, custom }: IRoomCreate, io: Server) {
         this.roomId = roomId;
         this.io = io;
         this.users = new Map();
         this.textChat = new TextChat(roomId, io);
         this.videoChat = new VideoChat(roomId, io);
-        this.game = new Game({ roomId, langs }, io)
+        this.game = new Game({ roomId, langs, custom }, io);
     }
 
     subscribe(socket: Socket): void {

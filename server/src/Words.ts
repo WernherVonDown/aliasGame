@@ -1,5 +1,6 @@
 import { IWord } from './const/game/types';
 import french_russian from './dataSource/langs/french_russian'
+import WordsList from './models/WordsList';
 
 interface ILangs {
     [key: string]: IWord[]
@@ -11,12 +12,14 @@ const LANGS: ILangs = {
 class Words {
     private foreignLang: string;
     private motherLang: string;
+    private custom: string | undefined;
     private wordsSaved: IWord[];
     private words: IWord[];
 
-    constructor({ foreignLang, motherLang }: IWord) {
+    constructor({ foreignLang, motherLang }: IWord, custom: string | undefined) {
         this.foreignLang = foreignLang;
         this.motherLang = motherLang;
+        this.custom = custom
         this.wordsSaved = [];
         this.words = [];
 
@@ -41,9 +44,15 @@ class Words {
         return array;
     }
 
-    prepareData = () => {
-        const langKey = `${this.foreignLang}_${this.motherLang}`;
-        this.wordsSaved = LANGS[langKey];
+    prepareData = async () => {
+        console.log('prepareData', this.custom)
+        if (!this.custom) {
+            const langKey = `${this.foreignLang}_${this.motherLang}`;
+            this.wordsSaved = LANGS[langKey];
+        } else {
+            const wordslist = await WordsList.findOne({_id: this.custom}).populate('words');
+            this.wordsSaved = wordslist.words;
+        }
     }
 
     getAllWords(): IWord[] {

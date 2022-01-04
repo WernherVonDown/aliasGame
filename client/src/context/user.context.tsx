@@ -1,9 +1,11 @@
-import React, { ReactElement, useCallback, useState, useEffect } from "react";
+import React, { ReactElement, useContext, useState, useEffect } from "react";
 import { useSockets } from './socket.context';
 import { USER_EVENTS } from '../const/user/USER_EVENTS';
 import { ROOM_EVENTS } from '../const/room/ROOM_EVENTS';
 import { IUser } from '../const/user/types';
 import useForceUpdate from "../hooks/useForceUpdate";
+import { HTTP_EVENTS } from "../const/https/HTTP_EVENTS";
+import axios from 'axios';
 
 interface IState {
     userName: string;
@@ -14,6 +16,7 @@ interface IState {
     active: boolean;
     deviceSet: boolean;
     localStream: MediaStream;
+    customWords: any[]
 }
 
 interface ContextValue {
@@ -48,6 +51,30 @@ const UserContextProvider = (props: IProps) => {
         
     }
 
+    const getCustomWords = async () => {
+        try {
+            const res = await axios.post(HTTP_EVENTS.getWords);
+            console.log('RES getCustomWords', res)
+            if (res.data.success) {
+                setState(p => ({
+                    ...p,
+                    customWords: res.data.wordsList || []
+                }))
+            }
+        } catch (error) {
+            console.log('getCustomWords error', error)
+        }
+    }
+
+    const addCustomWords = async (data: any) => {
+        try {
+            const res = await axios.post(HTTP_EVENTS.addWords, data);
+            console.log('addCustomWords res', res)
+        } catch (error) {
+            console.log('addCustomWords error', error)
+        }
+    }
+
     const getState = () => state;
 
     const devicesSet = () => {
@@ -80,6 +107,8 @@ const UserContextProvider = (props: IProps) => {
         devicesSet,
         setLocalStream,
         getState,
+        getCustomWords,
+        addCustomWords
     }
 
     return <UserContext.Provider
@@ -100,6 +129,7 @@ UserContextProvider.defaultProps = {
         maxScore: 0,
         color: '',
         deviceSet: false,
+        customWords: []
     }
 }
 
