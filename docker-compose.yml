@@ -1,0 +1,51 @@
+version: "3.4"
+services:
+  mongo:
+    image: mongo:4.4.3
+    ports:
+      - 6666:27017
+    volumes:
+      - /data/mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_ROOT_USERNAME=root
+    restart: always
+    networks:
+      - nesjs-network
+  
+  backend:
+    build: ./server
+    depends_on:
+      - mongo
+    ports:
+      - 4000:4000
+    restart: always
+    environment:
+      - CORS_ORIGIN=http://localhost:3000
+      - PORT=4000
+      - HOST=0.0.0.0
+      - DB_USER=root
+      - DB_PASS=password
+      - DB_BASE=admin
+      - DB_URL=mongo
+      - DB_PORT=27017
+      - JWT_SECRET=sldkfjsdldkflsdjlkf
+    networks:
+      - nesjs-network
+  
+  frontend: 
+    build: ./client
+    depends_on:
+      - backend
+    ports:
+      - 3000:80
+    environment:
+      - SOCKET_URL=http://localhost:4000
+      - BACKEND_URL=http://localhost:4000 
+    restart: always
+    networks:
+      - nesjs-network
+networks:
+  nesjs-network:
+    driver: bridge
