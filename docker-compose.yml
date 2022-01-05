@@ -7,9 +7,9 @@ services:
     volumes:
       - /data/mongo:/data/db
     environment:
-      - MONGO_INITDB_ROOT_PASSWORD=password
-      - MONGO_INITDB_DATABASE=admin
-      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS} #password
+      - MONGO_INITDB_DATABASE=${DB_BASE} #admin
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
     restart: always
     networks:
       - nesjs-network
@@ -22,15 +22,15 @@ services:
       - 4000:4000
     restart: always
     environment:
-      - CORS_ORIGIN=http://localhost:3000
+      - CORS_ORIGIN=${CORS_ORIGIN} #http://localhost:3000
       - PORT=4000
       - HOST=0.0.0.0
-      - DB_USER=root
-      - DB_PASS=password
-      - DB_BASE=admin
+      - DB_USER=${DB_USER} #root
+      - DB_PASS=${DB_PASS} #password
+      - DB_BASE=${DB_BASE} #admin
       - DB_URL=mongo
       - DB_PORT=27017
-      - JWT_SECRET=sldkfjsdldkflsdjlkf
+      - JWT_SECRET=${JWT_SECRET} #sldkfjsdldkflsdjlkf
     networks:
       - nesjs-network
   
@@ -41,8 +41,8 @@ services:
     ports:
       - 3000:80
     environment:
-      - SOCKET_URL=http://localhost:4000
-      - BACKEND_URL=http://localhost:4000 
+      - SOCKET_URL=${SOCKET_URL} #http://localhost:4000
+      - BACKEND_URL=${BACKEND_URL} #http://localhost:4000 
     restart: always
     networks:
       - nesjs-network

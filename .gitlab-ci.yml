@@ -1,0 +1,9 @@
+stages:
+  - deploy
+deploy:
+  stage: deploy
+  script:
+    - docker-compose -f docker-compose.yml down
+    - docker-compose -f docker-compose.yml up -d
+  only:
+    - master
