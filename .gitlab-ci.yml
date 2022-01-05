@@ -2,6 +2,7 @@ stages:
   - deploy
 deploy:
   stage: deploy
+  image: docker/compose:latest
   script:
     - docker-compose -f docker-compose.yml down
     - docker-compose -f docker-compose.yml up -d
