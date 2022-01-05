@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "nodemon --config nodemon.json src/app.ts",
-    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts"
+    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts",
+    "build": "tsc"
   },
   "moduleDirectories": [
     "src"

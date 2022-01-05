@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { IWord } from '../../../client/src/const/word/types';
+import { IWord } from '../const/game/types';
 import User from '../models/User';
 import Word from '../models/Word';
 import WordsList from '../models/WordsList';

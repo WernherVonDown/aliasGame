@@ -1,4 +1,4 @@
-import 'dotenv/config'
+require('dotenv/config')
 
 const {
     CORS_ORIGIN,
@@ -12,7 +12,7 @@ const {
     JWT_SECRET
 } = process.env;
 
-export default {
+module.exports = {
     corsOrigin: CORS_ORIGIN || "http://localhost:3000",
     port: PORT || 4000,
     host: HOST || "localhost",
